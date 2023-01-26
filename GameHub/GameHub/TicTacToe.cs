@@ -21,6 +21,10 @@ namespace GameHub
             this.bootstrap();
             int count = 1;
             bool done = false;
+            Dictionary<string, int> columns = new Dictionary<string, int>();
+            columns.Add("a", 0);
+            columns.Add("b", 1);
+            columns.Add("c", 2);
             do
             {
                 Console.Clear();
@@ -45,20 +49,20 @@ namespace GameHub
                 if (count % 2 == 0)
                 {
                     Console.WriteLine("Vez de O");
-                    Console.Write("L: ");
-                    int x = int.Parse(Console.ReadLine());
-                    Console.Write("C: ");
-                    int y = int.Parse(Console.ReadLine());
+                    Console.Write("Escola a casa: ");
+                    string square = Console.ReadLine();
+                    int x = int.Parse(square[0].ToString());
+                    int y = columns[square[1].ToString()];
                     this.play(x, y, "O");
 
                 }
                 else
                 {
                     Console.WriteLine("Vez de X");
-                    Console.Write("L: ");
-                    int x = int.Parse(Console.ReadLine());
-                    Console.Write("C: ");
-                    int y = int.Parse(Console.ReadLine());
+                    Console.Write("Escola a casa: ");
+                    string square = Console.ReadLine();
+                    int x = int.Parse(square[0].ToString());
+                    int y = columns[square[1].ToString()];
                     this.play(x, y, "X");
 
                 }
@@ -78,8 +82,10 @@ namespace GameHub
 
         private void displayBoard()
         {
+            Console.WriteLine($"  a b c");
             for (int i = 0; i < 3; i++)
             {
+                Console.Write($"{i} ");
                 for (int j = 0; j < 3; j++)
                 {
                     Console.Write($"{this.board[i, j]} ");
