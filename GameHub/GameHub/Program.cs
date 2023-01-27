@@ -9,18 +9,33 @@ namespace GameHub
         public static void Main(string[] args)
         {
             TicTacToeGame ticTacToeGame = new TicTacToeGame();
+            PlayersRepository players = new PlayersRepository();
             int option;
             do
             {
-                Console.WriteLine("Escolha seu jogo!\n");
-                Console.WriteLine("1 - Jogo da Velha");
-                Console.Write("\nOpção: ");
-                option = int.Parse(Console.ReadLine());
+                
+                UserInterface.Header();
+                option = UserInterface.MainMenu();
 
                 switch (option)
                 {
                     case 1:
-                        ticTacToeGame.run();
+                        Player player1 = new Player();
+                        Console.Write("Nome do jogador: ");
+                        player1.userName = Console.ReadLine();
+                        players.CreatePlayer(player1);
+                        break;
+                    case 2:
+                        Player[] ranking = players.getRanking();
+                        Console.WriteLine("JOGADOR | SCORE");
+                        for (int i = 0; i < ranking.Length; i++)
+                        {
+                            Console.WriteLine($"{i + 1} lugar -> {ranking[i].userName} | {ranking[i].score}");
+                        }
+                        Console.ReadKey();
+                        break;
+                    case 3:
+                        ticTacToeGame.run(players);
                         break;
                 }
             } while (option != 0);
