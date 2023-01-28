@@ -15,23 +15,41 @@ namespace GameHub
             this.board = new string[3, 3];
         }
 
-        public void run (PlayersRepository players)
+        public void Run (PlayersRepository players)
         {
             TicTacToeGame ticTacToeGame = new TicTacToeGame();
-            this.bootstrap();
+            this.Bootstrap();
             int count = 1;
             bool done = false;
 
             Console.WriteLine("Escolha o jogador 1: ");
             string name1 = Console.ReadLine();
-            Player player1 = players.getPlayer(name1);
+            Player player1;
+            try
+            {
+                player1 = players.GetPlayer(name1);
+            } catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.ReadKey();
+                return;
+            }
+            
 
             Console.WriteLine("Escolha o jogador 2: ");
             string name2 = Console.ReadLine();
             Player player2;
-            player2 = players.getPlayer(name2);
 
-            
+            try
+            {
+                player2 = players.GetPlayer(name2);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.ReadKey();
+                return;
+            }
 
             Dictionary<string, int> columns = new Dictionary<string, int>();
             columns.Add("a", 0);
@@ -42,22 +60,22 @@ namespace GameHub
             {
                 Console.Clear();
                 Console.WriteLine("Jogo da velha\n");
-                this.displayBoard();
+                this.DisplayBoard();
 
-                if (this.isDone("X"))
+                if (this.IsDone("X"))
                 {
                     done = true;
-                    players.updateScore(name1, 1);
-                    Console.WriteLine("\nX ganhou!");
+                    players.UpdateScore(name1, 1);
+                    Console.WriteLine($"\n{name1} ganhou!");
                     Console.ReadKey();
                     break;
                 }
 
-                if (this.isDone("O"))
+                if (this.IsDone("O"))
                 {
                     done = true;
-                    players.updateScore(name2, 1);
-                    Console.WriteLine("\nO ganhou!");
+                    players.UpdateScore(name2, 1);
+                    Console.WriteLine($"\n{name2} ganhou!");
                     Console.ReadKey();
                     break;
                 }
@@ -69,7 +87,7 @@ namespace GameHub
                     string square = Console.ReadLine();
                     int x = int.Parse(square[0].ToString());
                     int y = columns[square[1].ToString()];
-                    this.play(x, y, "O");
+                    this.Play(x, y, "O");
                 }
                 else
                 {
@@ -77,12 +95,12 @@ namespace GameHub
                     string square = Console.ReadLine();
                     int x = int.Parse(square[0].ToString());
                     int y = columns[square[1].ToString()];
-                    this.play(x, y, "X");
+                    this.Play(x, y, "X");
                 }
                 count++;
             } while (!done);
         }
-        private void bootstrap()
+        private void Bootstrap()
         {
             for (int i = 0; i < 3; i++)
             {
@@ -93,7 +111,7 @@ namespace GameHub
             }
         }
 
-        private void displayBoard()
+        private void DisplayBoard()
         {
             Console.WriteLine($"  a b c");
             for (int i = 0; i < 3; i++)
@@ -107,12 +125,12 @@ namespace GameHub
             }
         }
 
-        private void play(int x, int y, string symbol)
+        private void Play(int x, int y, string symbol)
         {
             this.board[x, y] = symbol;
         }
 
-        private bool isDone(string symbol)
+        private bool IsDone(string symbol)
         {
             if (this.board[0, 0] == symbol && board[0, 1] == symbol && board[0, 2] == symbol)
             {

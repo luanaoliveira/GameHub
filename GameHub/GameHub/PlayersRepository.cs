@@ -19,14 +19,14 @@ namespace GameHub
 
     internal class Database
     {
-        private readonly static string databaseFileName = "players_database.json";
-        public static Player[] load()
+        private readonly static string databaseFileName = "gamehub_players_database.json";
+        public static Player[] Load()
         {
             string playersJson = File.ReadAllText(databaseFileName);
             return JsonSerializer.Deserialize<Player[]>(playersJson);
         }
 
-        public static void save(Player[] players) {
+        public static void Save(Player[] players) {
             string jsonString = JsonSerializer.Serialize(players);
             File.WriteAllText(databaseFileName, jsonString);
         }
@@ -36,16 +36,22 @@ namespace GameHub
         public Player[] players;
         public PlayersRepository()
         {
-            this.players = Database.load();
+            try
+            {
+                this.players = Database.Load();
+            } catch
+            {
+                this.players = new Player[0];
+            }
         }
 
         public void CreatePlayer(Player player)
         {
             this.players = this.players.Append(player).ToArray();
-            Database.save(this.players);
+            Database.Save(this.players);
         }
 
-        public Player getPlayer(string name)
+        public Player GetPlayer(string name)
         {
             for (int i = 0; i < this.players.Length; i++)
             {
@@ -55,16 +61,16 @@ namespace GameHub
             throw new IndexOutOfRangeException("Jogador inexistente!");
         }
 
-        public Player[] getRanking()
+        public Player[] GetRanking()
         {
             Array.Sort(this.players, new PlayerComparer());
             return this.players;
         }
 
-        public void updateScore(string playerName, int additionalScore)
+        public void UpdateScore(string playerName, int additionalScore)
         {
-            this.getPlayer(playerName).score += additionalScore;
-            Database.save(this.players);
+            this.GetPlayer(playerName).score += additionalScore;
+            Database.Save(this.players);
         }
 
     }
