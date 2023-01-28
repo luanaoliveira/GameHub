@@ -27,10 +27,11 @@ namespace GameHub
                         break;
                     case 2:
                         Player[] ranking = players.getRanking();
-                        Console.WriteLine("JOGADOR | SCORE");
+                        Console.Clear();
+                        Console.WriteLine("POSIÇÃO | SCORE | JOGADOR\n");
                         for (int i = 0; i < ranking.Length; i++)
                         {
-                            Console.WriteLine($"{i + 1} lugar -> {ranking[i].userName} | {ranking[i].score}");
+                            Console.WriteLine($"{i + 1}º | {ranking[i].score} pts | {ranking[i].userName}");
                         }
                         Console.ReadKey();
                         break;

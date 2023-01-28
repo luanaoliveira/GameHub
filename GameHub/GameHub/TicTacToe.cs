@@ -47,7 +47,7 @@ namespace GameHub
                 if (this.isDone("X"))
                 {
                     done = true;
-                    player1.score += 1;
+                    players.updateScore(name1, 1);
                     Console.WriteLine("\nX ganhou!");
                     Console.ReadKey();
                     break;
@@ -56,7 +56,7 @@ namespace GameHub
                 if (this.isDone("O"))
                 {
                     done = true;
-                    player2.score += 1;
+                    players.updateScore(name2, 1);
                     Console.WriteLine("\nO ganhou!");
                     Console.ReadKey();
                     break;

@@ -10,7 +10,6 @@ namespace GameHub
     {
         public string userName { get; set; }
         public int score { get; set; }
-        public string type { get; set; }
         public Player()
         {
             this.userName = string.Empty;
