@@ -8,7 +8,7 @@ Na opção 1 é feito o cadastro de um jogador, depois acessa novamente e faz o 
 
 Opção 1:
 
-Nome do jogador: 
+Nome do jogador: luana
 
 Opção 2:
 
