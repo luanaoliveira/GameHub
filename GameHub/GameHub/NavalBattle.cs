@@ -134,7 +134,7 @@ namespace GameHub
         private void positionFirstPlayerShips()
         {
             Random randNum = new Random();
-            int count = 5;
+            int count = 20;
             while (count != 0)
             {
                 int i = randNum.Next(0, 8);
@@ -150,7 +150,7 @@ namespace GameHub
         private void positionSecondPlayerShips()
         {
             Random randNum = new Random();
-            int count = 5;
+            int count = 20;
             while (count != 0)
             {
                 int i = randNum.Next(0, 8);
