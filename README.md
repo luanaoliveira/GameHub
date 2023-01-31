@@ -44,7 +44,7 @@ No jogo de batalha naval, também é necessário escolher os dois jogares que ir
 Escolha o jogador 1: luana
 Escolha o jogador 2: João
 ```
-Cada jogador, possui cinco navios. O jogador que tiver todos os seus navios atingidos, perde.
+Cada jogador, possui 20 navios. O jogador que tiver todos os seus navios atingidos, perde.
 
 ![GameHub-3](https://user-images.githubusercontent.com/7728584/215629278-f48d4952-e8c7-41d8-b627-8f472f34fbe3.png)
 
