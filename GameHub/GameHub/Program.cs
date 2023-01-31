@@ -10,6 +10,7 @@ namespace GameHub
         {
             PlayersRepository players = new PlayersRepository();
             TicTacToeGame ticTacToeGame = new TicTacToeGame();
+            NavalBattle navalBattle = new NavalBattle();
             
             int option;
 
@@ -31,6 +32,9 @@ namespace GameHub
                         break;
                     case 3:
                         ticTacToeGame.Run(players);
+                        break;
+                    case 4:
+                        navalBattle.Run(players);
                         break;
                 }
             } while (option != 0);

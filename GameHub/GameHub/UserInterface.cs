@@ -20,6 +20,7 @@ namespace GameHub
             Console.WriteLine("1 - Criar jogador");
             Console.WriteLine("2 - Ver Ranking");
             Console.WriteLine("3 - Jogo da velha");
+            Console.WriteLine("4 - Jogo da batalha naval");
             Console.WriteLine();
             Console.Write("Opção: ");
             return int.Parse(Console.ReadLine());
